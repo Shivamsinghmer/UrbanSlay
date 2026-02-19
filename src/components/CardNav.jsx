@@ -212,7 +212,7 @@ const CardNav = ({
 
         <div
           className={`card-nav-content absolute left-0 right-0 top-[60px] bottom-0 p-2 pb-6 flex flex-col items-stretch gap-2 justify-start z-[1] overflow-y-auto overflow-x-hidden custom-nav-scrollbar ${isExpanded ? 'visible pointer-events-auto' : 'invisible pointer-events-none'
-            } lg:flex-row lg:items-start lg:gap-[12px] touch-action-auto`}
+            } lg:flex-row lg:items-start lg:gap-3 touch-action-auto`}
           aria-hidden={!isExpanded}>
           {(items || []).map((item, idx) => (
             <div

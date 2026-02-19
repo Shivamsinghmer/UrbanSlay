@@ -68,3 +68,31 @@ export const footerData = () => ({
     { href: "/shipping-policy", label: "Shipping Policy" },
   ],
 });
+
+export const heroImages = [
+    {
+      src_pc: "/hero-carousel/carousel1-pc.webp",
+      src_mobile: "/hero-carousel/carousel1-mobile.webp",
+      alt: "posters",
+    },
+    {
+      src_pc: "/hero-carousel/carousel1-pc.webp",
+      src_mobile: "/hero-carousel/carousel1-mobile.webp",
+      alt: "posters",
+    },
+    {
+      src_pc: "/hero-carousel/carousel1-pc.webp",
+      src_mobile: "/hero-carousel/carousel1-mobile.webp",
+      alt: "posters",
+    },
+    {
+      src_pc: "/hero-carousel/carousel1-pc.webp",
+      src_mobile: "/hero-carousel/carousel1-mobile.webp",
+      alt: "posters",
+    },
+    {
+      src_pc: "/hero-carousel/carousel1-pc.webp",
+      src_mobile: "/hero-carousel/carousel1-mobile.webp",
+      alt: "posters",
+    },
+  ]

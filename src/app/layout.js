@@ -26,7 +26,7 @@ export default function RootLayout({ children }) {
         className={`${geistSans.variable} ${geistMono.variable} antialiased`}
       >
         <CardNav
-          logo="/logo.jpg"
+          logo="/navImages/logo.jpg"
           logoAlt="UrbanSlay"
           items={navItems}
           baseColor="#fff"

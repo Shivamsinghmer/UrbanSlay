@@ -41,7 +41,7 @@ export default function FooterStandard() {
           <div className="flex flex-col items-center text-center md:items-start md:text-left space-y-6 lg:col-span-2">
             <Link href="/" className="inline-flex items-center gap-3">
               <Image
-                src="/logo.jpg"
+                src="/navImages/logo.jpg"
                 alt="Logo"
                 width={200}
                 height={200}

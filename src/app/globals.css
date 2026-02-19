@@ -91,6 +91,16 @@ body {
   background-size: 200% 100%;
 }
 
+@keyframes autoplay-progress {
+  0% {
+    transform: scaleX(0);
+  }
+
+  100% {
+    transform: scaleX(1);
+  }
+}
+
 .custom-nav-scrollbar::-webkit-scrollbar {
   width: 4px;
 }
