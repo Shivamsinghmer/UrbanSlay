@@ -1,5 +1,8 @@
 import { Geist, Geist_Mono } from "next/font/google";
 import "./globals.css";
+import FooterStandard from "@/components/mvpblocks/footer-standard";
+import CardNav from "@/components/CardNav";
+import { navItems } from "@/constants/constant";
 
 const geistSans = Geist({
   variable: "--font-geist-sans",
@@ -22,7 +25,19 @@ export default function RootLayout({ children }) {
       <body
         className={`${geistSans.variable} ${geistMono.variable} antialiased`}
       >
+        <CardNav
+          logo="/logo.jpg"
+          logoAlt="UrbanSlay"
+          items={navItems}
+          baseColor="#fff"
+          menuColor="#000"
+          buttonBgColor="#111"
+          buttonTextColor="#fff"
+          ease="power3.out"
+          theme="color"
+        />
         {children}
+        <FooterStandard />
       </body>
     </html>
   );

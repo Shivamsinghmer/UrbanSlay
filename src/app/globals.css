@@ -4,45 +4,44 @@
 
 :root {
   /* core colors */
-  --background: #fffcf5;
-  --foreground: #05140d;
-  --primary: #008f47;
-  --secondary: #f50000;
-  --accent: #ff990a;
+  --background: #f8f7fa;
+  --foreground: #3d3c4f;
+  --primary: #8a79ab;
+  --secondary: #dfd9ec;
+  --accent: #e6a5b8;
 
-  /* UI colors */
+  /* UI */
   --card: #ffffff;
-  --muted: #f5edd6;
-  --border: #000000;
+  --muted: #dcd9e3;
+  --border: #cec9d9;
+  --input: #eae7f0;
 
   /* fonts */
-  --font-sans: 'Montserrat', sans-serif;
-  --font-serif: 'Lora', serif;
-  --font-mono: 'Space Mono', monospace;
+  --font-sans: Geist, sans-serif;
+  --font-serif: "Lora", Georgia, serif;
+  --font-mono: "Fira Code", monospace;
 
   /* layout */
-  --radius: 6px;
-  --shadow: 0 2px 8px rgba(0,0,0,0.1);
-
-  /* spacing */
-  --spacing: 0.25rem;
+  --radius: 0.5rem;
+  --shadow: 0 2px 8px rgba(0, 0, 0, 0.06);
 }
 
 .dark {
-  --background: #02120a;
-  --foreground: #fff9e5;
-  --primary: #00f57a;
-  --secondary: #ff3333;
-  --accent: #ffa629;
+  --background: #1a1823;
+  --foreground: #e0ddef;
+  --primary: #a995c9;
+  --secondary: #5a5370;
+  --accent: #f2b8c6;
 
-  --card: #062314;
-  --muted: #0f2e1f;
-  --border: #fff9e5;
+  --card: #232030;
+  --muted: #242031;
+  --border: #302c40;
+  --input: #2a273a;
 
-  --shadow: 0 2px 8px rgba(0,0,0,0.4);
+  --shadow: 0 2px 8px rgba(0, 0, 0, 0.3);
 }
 
-/* theme mapping (for Tailwind v4 / shadcn compatibility) */
+/* Tailwind v4 mapping */
 @theme inline {
   --color-background: var(--background);
   --color-foreground: var(--foreground);
@@ -52,11 +51,66 @@
   --color-card: var(--card);
   --color-muted: var(--muted);
   --color-border: var(--border);
+  --color-input: var(--input);
 }
 
-/* global styles */
+/* base styles */
 body {
   font-family: var(--font-sans);
   background: var(--background);
   color: var(--foreground);
+}
+
+/* Custom Animations & Utilities */
+@keyframes footer-rotate3d {
+  0% {
+    transform: rotateY(0);
+  }
+
+  100% {
+    transform: rotateY(360deg);
+  }
+}
+
+@keyframes footer-energy-flow {
+  0% {
+    background-position: -100% 0;
+  }
+
+  100% {
+    background-position: 100% 0;
+  }
+}
+
+.animate-rotate-3d {
+  animation: footer-rotate3d 8s linear infinite;
+}
+
+.animate-energy-flow {
+  animation: footer-energy-flow 4s linear infinite;
+  background-size: 200% 100%;
+}
+
+.custom-nav-scrollbar::-webkit-scrollbar {
+  width: 4px;
+}
+
+.custom-nav-scrollbar::-webkit-scrollbar-track {
+  background: transparent;
+}
+
+.custom-nav-scrollbar::-webkit-scrollbar-thumb {
+  background: rgba(0, 0, 0, 0.1);
+  border-radius: 10px;
+}
+
+.custom-nav-scrollbar {
+  scrollbar-width: thin;
+  scrollbar-color: rgba(0, 0, 0, 0.1) transparent;
+}
+
+@media (max-width: 768px) {
+  .nav-card-mobile-height {
+    min-height: fit-content;
+  }
 }
