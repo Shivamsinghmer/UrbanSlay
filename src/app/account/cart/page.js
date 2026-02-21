@@ -137,12 +137,28 @@ export default function CartPage() {
                             </div>
 
                             <button
-                                onClick={() => {
+                                onClick={async () => {
                                     if (!isSignedIn) {
                                         clerk.openSignIn();
                                         return;
                                     }
-                                    router.push("/checkout");
+
+                                    if (paymentMethod === "online") {
+                                        const { handlePayment } = await import('@/lib/razorpay');
+                                        handlePayment({
+                                            amount: finalTotal,
+                                            description: `Payment for ${cart.length} items from UrbanSlate`,
+                                            onSuccess: (response) => {
+                                                alert(`Payment Successful! Payment ID: ${response.razorpay_payment_id}`);
+                                                // You can add cart clearing or real order creation here.
+                                                // For now redirecting to a basic checkout/success page
+                                                router.push("/checkout");
+                                            }
+                                        });
+                                    } else {
+                                        // If COD
+                                        router.push("/checkout");
+                                    }
                                 }}
                                 className="w-full bg-black text-white py-4 text-[12px] font-bold tracking-[0.2em] uppercase rounded-sm hover:bg-gray-900 transition-colors flex items-center justify-center gap-2 group shadow-xl">
                                 Checkout

@@ -43,10 +43,10 @@ export default function FloatingContact() {
         e.preventDefault();
         setStatus('sending');
 
-        // IMPORTANT: Replace with your actual EmailJS IDs
-        const SERVICE_ID = 'YOUR_SERVICE_ID';
-        const TEMPLATE_ID = 'YOUR_TEMPLATE_ID';
-        const PUBLIC_KEY = 'YOUR_PUBLIC_KEY';
+        // IMPORTANT: Ensure you have NEXT_PUBLIC_SERVICE_ID, NEXT_PUBLIC_TEMPLATE_ID, and NEXT_PUBLIC_PUBLIC_KEY in your .env.local
+        const SERVICE_ID = process.env.NEXT_PUBLIC_SERVICE_ID || 'YOUR_SERVICE_ID';
+        const TEMPLATE_ID = process.env.NEXT_PUBLIC_TEMPLATE_ID || 'YOUR_TEMPLATE_ID';
+        const PUBLIC_KEY = process.env.NEXT_PUBLIC_PUBLIC_KEY || 'YOUR_PUBLIC_KEY';
 
         emailjs.sendForm(SERVICE_ID, TEMPLATE_ID, form.current, PUBLIC_KEY)
             .then((result) => {
@@ -57,7 +57,7 @@ export default function FloatingContact() {
                     if (form.current) form.current.reset();
                 }, 2000);
             }, (error) => {
-                console.error(error);
+                console.error("EmailJS Error Response:", error);
                 setStatus('error');
             });
     };
@@ -105,9 +105,8 @@ export default function FloatingContact() {
                 </button>
             </div>
 
-            {/* EmailJs Modal Overlay */}
             {isEmailModalOpen && (
-                <div className="fixed inset-0 z-[100] flex items-center justify-center p-4 bg-black/60 backdrop-blur-sm animate-in fade-in duration-200">
+                <div className="fixed inset-0 z-100 flex items-center justify-center p-4 bg-black/60 backdrop-blur-sm animate-in fade-in duration-200">
                     <div className="bg-white max-w-md w-full rounded-2xl p-6 shadow-2xl relative animate-in slide-in-from-bottom-4 zoom-in-95 duration-300">
                         {/* Close Button */}
                         <button
@@ -127,7 +126,7 @@ export default function FloatingContact() {
                                 <label className="block text-xs font-bold tracking-widest uppercase text-gray-700 mb-1">Name</label>
                                 <input
                                     type="text"
-                                    name="user_name"
+                                    name="from_name"
                                     required
                                     className="w-full border border-gray-200 rounded-lg px-4 py-2 text-sm focus:outline-none focus:ring-2 focus:ring-black/5 focus:border-black transition-colors"
                                     placeholder="Jane Doe"
@@ -137,10 +136,28 @@ export default function FloatingContact() {
                                 <label className="block text-xs font-bold tracking-widest uppercase text-gray-700 mb-1">Email</label>
                                 <input
                                     type="email"
-                                    name="user_email"
+                                    name="from_email"
                                     required
                                     className="w-full border border-gray-200 rounded-lg px-4 py-2 text-sm focus:outline-none focus:ring-2 focus:ring-black/5 focus:border-black transition-colors"
                                     placeholder="jane@example.com"
+                                />
+                            </div>
+                            <div>
+                                <label className="block text-xs font-bold tracking-widest uppercase text-gray-700 mb-1">Phone</label>
+                                <input
+                                    type="tel"
+                                    name="phone"
+                                    className="w-full border border-gray-200 rounded-lg px-4 py-2 text-sm focus:outline-none focus:ring-2 focus:ring-black/5 focus:border-black transition-colors"
+                                    placeholder="Your phone number"
+                                />
+                            </div>
+                            <div>
+                                <label className="block text-xs font-bold tracking-widest uppercase text-gray-700 mb-1">Subject</label>
+                                <input
+                                    type="text"
+                                    name="subject"
+                                    className="w-full border border-gray-200 rounded-lg px-4 py-2 text-sm focus:outline-none focus:ring-2 focus:ring-black/5 focus:border-black transition-colors"
+                                    placeholder="What is this regarding?"
                                 />
                             </div>
                             <div>

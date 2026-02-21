@@ -1,11 +1,12 @@
 "use client";
 import React, { useEffect, useState } from "react";
-import { useParams } from "next/navigation";
+import { useParams, useRouter } from "next/navigation";
 import { Loader2, Minus, Plus, Heart, ShoppingBag } from "lucide-react";
 import { useShop } from "@/context/ShopContext";
 
 export default function ProductDetailPage() {
     const params = useParams();
+    const router = useRouter();
     const id = params?.id;
 
     const [product, setProduct] = useState(null);
@@ -131,38 +132,50 @@ export default function ProductDetailPage() {
                         </p>
 
                         {/* Actions */}
-                        <div className="flex flex-col sm:flex-row gap-4 pt-4">
-                            {cartItem ? (
-                                <div className="w-full sm:flex-1 border border-black h-12 flex items-center justify-between px-6 rounded-xs">
+                        <div className="flex flex-col gap-4 pt-4">
+                            <div className="flex flex-col sm:flex-row gap-4">
+                                {cartItem ? (
+                                    <div className="w-full sm:flex-1 border border-black h-12 flex items-center justify-between px-6 rounded-xs">
+                                        <button
+                                            onClick={() => updateQuantity(product._id, -1)}
+                                            className="text-gray-500 hover:text-black transition-colors"
+                                        >
+                                            <Minus size={16} />
+                                        </button>
+                                        <span className="text-xs font-bold tracking-widest">{cartItem.quantity} IN BAG</span>
+                                        <button
+                                            onClick={() => updateQuantity(product._id, 1)}
+                                            className="text-gray-500 hover:text-black transition-colors"
+                                        >
+                                            <Plus size={16} />
+                                        </button>
+                                    </div>
+                                ) : (
                                     <button
-                                        onClick={() => updateQuantity(product._id, -1)}
-                                        className="text-gray-500 hover:text-black transition-colors"
+                                        onClick={() => addToCart(product)}
+                                        className="w-full sm:flex-1 bg-white text-black border-2 border-black h-12 text-[11px] font-bold tracking-widest uppercase hover:bg-gray-100 transition-colors flex items-center justify-center gap-3 rounded-xs cursor-pointer shadow-sm"
                                     >
-                                        <Minus size={16} />
+                                        <ShoppingBag size={16} />
+                                        Add to Bag
                                     </button>
-                                    <span className="text-xs font-bold tracking-widest">{cartItem.quantity} IN BAG</span>
-                                    <button
-                                        onClick={() => updateQuantity(product._id, 1)}
-                                        className="text-gray-500 hover:text-black transition-colors"
-                                    >
-                                        <Plus size={16} />
-                                    </button>
-                                </div>
-                            ) : (
+                                )}
+
                                 <button
-                                    onClick={() => addToCart(product)}
-                                    className="w-full sm:flex-1 bg-black text-white h-12 text-[11px] font-bold tracking-widest uppercase hover:bg-black/80 transition-colors flex items-center justify-center gap-3 rounded-xs cursor-pointer shadow-sm"
+                                    onClick={() => toggleWishlist(product)}
+                                    className={`h-12 w-full sm:w-16 border rounded-xs flex items-center justify-center transition-colors cursor-pointer ${isWishlisted ? 'border-red-500 bg-red-50 text-red-500' : 'border-gray-300 text-gray-400 hover:border-black hover:text-black'}`}
                                 >
-                                    <ShoppingBag size={16} />
-                                    Add to Bag
+                                    <Heart size={20} fill={isWishlisted ? "currentColor" : "none"} />
                                 </button>
-                            )}
+                            </div>
 
                             <button
-                                onClick={() => toggleWishlist(product)}
-                                className={`h-12 w-full sm:w-16 border rounded-xs flex items-center justify-center transition-colors cursor-pointer ${isWishlisted ? 'border-red-500 bg-red-50 text-red-500' : 'border-gray-300 text-gray-400 hover:border-black hover:text-black'}`}
+                                onClick={() => {
+                                    if (!cartItem) addToCart(product);
+                                    router.push('/account/cart');
+                                }}
+                                className="w-full bg-[#D4A373] text-white h-12 text-[11px] font-bold tracking-widest uppercase hover:bg-[#c29161] transition-colors flex items-center justify-center gap-3 rounded-xs cursor-pointer shadow-sm"
                             >
-                                <Heart size={20} fill={isWishlisted ? "currentColor" : "none"} />
+                                Buy Now
                             </button>
                         </div>
                     </div>

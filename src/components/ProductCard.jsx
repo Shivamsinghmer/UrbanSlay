@@ -3,9 +3,11 @@ import React from "react";
 import { Heart, Minus, Plus } from "lucide-react";
 import { useShop } from "@/context/ShopContext";
 import Link from "next/link";
+import { useRouter } from "next/navigation";
 
 export default function ProductCard({ product }) {
     const { toggleWishlist, isInWishlist, addToCart, getCartItem, updateQuantity } = useShop();
+    const router = useRouter();
 
     const isWishlisted = isInWishlist(product._id);
     const cartItem = getCartItem(product._id);
@@ -36,7 +38,7 @@ export default function ProductCard({ product }) {
                 />
 
                 {/* Action Buttons Overlay */}
-                <div className="absolute inset-x-0 bottom-0 p-4 translate-y-full group-hover:translate-y-0 transition-transform duration-500 ease-out bg-linear-to-t from-black/20 to-transparent">
+                <div className="absolute inset-x-0 bottom-0 p-4 translate-y-full group-hover:translate-y-0 transition-transform duration-500 ease-out bg-linear-to-t from-black/20 to-transparent flex flex-col gap-2">
                     <div className="flex gap-2" onClick={(e) => e.preventDefault()}>
                         {cartItem ? (
                             <div className="flex-1 bg-white text-black text-[11px] font-bold tracking-widest py-1.5 rounded-xs flex items-center justify-between px-3 shadow-lg">
@@ -57,7 +59,7 @@ export default function ProductCard({ product }) {
                         ) : (
                             <button
                                 onClick={(e) => { e.preventDefault(); e.stopPropagation(); addToCart(product); }}
-                                className="flex-1 bg-white text-black text-[11px] font-bold tracking-widest py-3 rounded-xs hover:bg-black hover:text-white transition-colors duration-300 flex items-center justify-center gap-2 shadow-lg cursor-pointer"
+                                className="flex-1 bg-white text-black text-[11px] font-bold tracking-widest py-3 rounded-xs hover:bg-black hover:text-white transition-colors duration-300 flex items-center justify-center gap-2 shadow-lg cursor-pointer border-2 border-transparent hover:border-black"
                             >
                                 ADD TO BAG
                             </button>
@@ -65,11 +67,23 @@ export default function ProductCard({ product }) {
 
                         <button
                             onClick={(e) => { e.preventDefault(); e.stopPropagation(); toggleWishlist(product); }}
-                            className={`w-11 h-11 bg-white text-black rounded-xs flex items-center justify-center hover:bg-black hover:text-white transition-colors duration-300 shadow-lg cursor-pointer ${isWishlisted ? 'text-red-500' : ''}`}
+                            className={`w-11 h-11 bg-white text-black rounded-xs flex items-center justify-center hover:bg-black hover:text-white transition-colors duration-300 shadow-lg cursor-pointer shrink-0 ${isWishlisted ? 'text-red-500' : ''}`}
                         >
                             <Heart size={18} fill={isWishlisted ? "currentColor" : "none"} />
                         </button>
                     </div>
+
+                    <button
+                        onClick={(e) => {
+                            e.preventDefault();
+                            e.stopPropagation();
+                            if (!cartItem) addToCart(product);
+                            router.push('/account/cart');
+                        }}
+                        className="w-full bg-[#D4A373] text-white text-[11px] font-bold tracking-widest py-3 rounded-xs hover:bg-[#c29161] transition-colors duration-300 flex items-center justify-center gap-2 shadow-lg cursor-pointer uppercase"
+                    >
+                        BUY NOW
+                    </button>
                 </div>
 
                 {/* Quick view button - appears on hover (if TopProducts specifically needs it, otherwise it can stay here) */}
