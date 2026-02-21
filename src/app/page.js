@@ -1,46 +1,33 @@
-const logo = "/navImages/logo.jpg";
-import { navItems } from "@/constants/constant.js";
-import CardNav from "../components/CardNav.jsx"
-import { heroImages } from "@/constants/constant.js";
-import { Carousel } from "@/components/carousel.jsx";
+"use client";
+import React from "react";
+import Hero from "@/sections/Hero";
+import Categories from "@/sections/Categories";
+import TopProducts from "@/sections/TopProducts";
+import GiftHampers from "@/sections/GiftHampers";
+import ShopByRecipient from "@/sections/ShopByRecipient";
+import Confidence from "@/sections/Confidence";
+import Testimonials from "@/sections/Testimonials";
+import FAQ from "@/sections/FAQ";
+import Marquee from "@/components/Marquee";
 
 const App = () => {
-
-  const slides = heroImages.map((img, idx) => (
-    <picture key={idx}>
-      <source media="(max-width: 768px)" srcSet={img.src_mobile} />
-      <img
-        src={img.src_pc}
-        className="h-80 md:h-135.5 w-full rounded-2xl md:rounded-3xl object-cover shadow-lg"
-        alt={img.alt}
-      />
-    </picture>
-  ))
-  const thumbnails = heroImages.map((img, idx) => (
-    <picture key={idx}>
-      <source media="(max-width: 768px)" srcSet={img.src_mobile} />
-      <img
-        src={img.src_pc}
-        className="h-full w-full object-cover"
-        alt={img.alt}
-      />
-    </picture>
-  ))
   return (
-    <main className="mx-auto w-[90%] max-w-350 pt-32 pb-10">
-      <div className="w-full">
-        <Carousel
-          slides={slides}
-          thumbnails={thumbnails}
-          autoplayDelay={2500}
-          showPlay={false}
-          showDots={false}
-          showProgress
-        />
-      </div>
-    </main>
-  )
+    <main>
+      <Hero />
+      <Marquee text="Jewellery that actually gets worn? That’s the kind worth gifting." />
 
+      <section className="space-y-4">
+        <Categories />
+        <TopProducts />
+        <GiftHampers />
+        <ShopByRecipient />
+      </section>
+
+      <Confidence />
+      <Testimonials />
+      <FAQ />
+    </main>
+  );
 };
 
 export default App;

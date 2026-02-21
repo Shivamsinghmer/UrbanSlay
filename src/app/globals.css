@@ -55,10 +55,16 @@
 }
 
 /* base styles */
+html {
+  scroll-behavior: smooth;
+}
+
 body {
   font-family: var(--font-sans);
   background: var(--background);
   color: var(--foreground);
+  background-image: radial-gradient(#d1d1d1 0.5px, transparent 0.5px);
+  background-size: 24px 24px;
 }
 
 /* Custom Animations & Utilities */

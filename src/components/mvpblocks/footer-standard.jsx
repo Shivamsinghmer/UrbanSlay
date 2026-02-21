@@ -50,8 +50,8 @@ export default function FooterStandard() {
               <span className="text-xl font-semibold font-mono">UrbanSlay</span>
             </Link>
             <p className="text-muted-foreground max-w-md mx-auto md:mx-0">
-              Elevating your lifestyle with curated jewelry and premium home decor.
-              Modern designs for the contemporary home and soul.
+              Elevating your lifestyle with curated jewelry.
+              Modern designs for the contemporary soul.
             </p>
             <div className="flex flex-wrap items-center justify-center md:justify-start gap-3">
               <div className="flex gap-2">

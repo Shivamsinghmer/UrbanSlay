@@ -6,10 +6,9 @@ export const navItems = [
     bgColor: "#0D0716",
     textColor: "#fff",
     links: [
-      { label: "Bracelets", ariaLabel: "Men Bracelets", hoverImageUrl: "https://res.cloudinary.com/dpr46qjaz/image/upload/v1771474673/SKU-01-_1_u0hkrt.webp" },
-      { label: "Rings", ariaLabel: "Men Rings", hoverImageUrl: "https://res.cloudinary.com/dpr46qjaz/image/upload/v1771474594/Salty-1949256_6731d7bd-2d4e-4613-9717-115483a412ee_vm7rgw.webp" },
-      { label: "Watches", ariaLabel: "Men Watches", hoverImageUrl: "https://res.cloudinary.com/dpr46qjaz/image/upload/v1771474904/unnamed_ccqaqv.jpg" },
-      { label: "Chains", ariaLabel: "Men Chains", hoverImageUrl: "https://res.cloudinary.com/dpr46qjaz/image/upload/v1771474479/MN1S0556_White_20_281_29_rlgbxm.webp" },
+      { label: "Bracelets", href: "/shop/men?category=bracelets", ariaLabel: "Men Bracelets", hoverImageUrl: "https://res.cloudinary.com/dpr46qjaz/image/upload/v1771474673/SKU-01-_1_u0hkrt.webp" },
+      { label: "Rings", href: "/shop/men?category=rings", ariaLabel: "Men Rings", hoverImageUrl: "https://res.cloudinary.com/dpr46qjaz/image/upload/v1771474594/Salty-1949256_6731d7bd-2d4e-4613-9717-115483a412ee_vm7rgw.webp" },
+      { label: "Chains", href: "/shop/men?category=chains", ariaLabel: "Men Chains", hoverImageUrl: "https://res.cloudinary.com/dpr46qjaz/image/upload/v1771474479/MN1S0556_White_20_281_29_rlgbxm.webp" },
     ]
   },
   {
@@ -17,24 +16,22 @@ export const navItems = [
     bgColor: "#170D27",
     textColor: "#fff",
     links: [
-      { label: "Earings", ariaLabel: "Women Earings", hoverImageUrl: "https://res.cloudinary.com/dpr46qjaz/image/upload/v1771473864/Earrings_-Salty-156605146_orjot3.webp" },
-      { label: "Rings", ariaLabel: "Women Rings", hoverImageUrl: "https://res.cloudinary.com/dpr46qjaz/image/upload/v1771474135/RC24349-S_MAIN1_rnvhmg.webp" },
-      { label: "Pendants", ariaLabel: "Women Pendants", hoverImageUrl: "https://res.cloudinary.com/dpr46qjaz/image/upload/v1771473977/BIPS0004P07_YAA14DIG6BLTOXXXX_ABCD00-PICS-00004-1024-34391_utruqa.webp" },
-      { label: "Bracelets", ariaLabel: "Women Bracelets", hoverImageUrl: "https://res.cloudinary.com/dpr46qjaz/image/upload/v1771473864/Earrings_-Salty-156605146_orjot3.webp" },
-      { label: "Watches", ariaLabel: "Women Watches", hoverImageUrl: "https://res.cloudinary.com/dpr46qjaz/image/upload/v1771474256/carlington_golden_women_analogue_watch_yfgjwm.avif" },
-      { label: "Jewelry Sets", ariaLabel: "Women Jewelry Sets", hoverImageUrl: "https://res.cloudinary.com/dpr46qjaz/image/upload/v1771474171/Jewellery-Sets_-Salty-156607652_gksa4p.webp" },
+      { label: "Earrings", href: "/shop/women?category=earrings", ariaLabel: "Women Earrings", hoverImageUrl: "https://res.cloudinary.com/dpr46qjaz/image/upload/v1771473864/Earrings_-Salty-156605146_orjot3.webp" },
+      { label: "Rings", href: "/shop/women?category=rings", ariaLabel: "Women Rings", hoverImageUrl: "https://res.cloudinary.com/dpr46qjaz/image/upload/v1771474135/RC24349-S_MAIN1_rnvhmg.webp" },
+      { label: "Pendants", href: "/shop/women?category=pendants", ariaLabel: "Women Pendants", hoverImageUrl: "https://res.cloudinary.com/dpr46qjaz/image/upload/v1771473977/BIPS0004P07_YAA14DIG6BLTOXXXX_ABCD00-PICS-00004-1024-34391_utruqa.webp" },
+      { label: "Bracelets", href: "/shop/women?category=bracelets", ariaLabel: "Women Bracelets", hoverImageUrl: "https://res.cloudinary.com/dpr46qjaz/image/upload/v1771473864/Earrings_-Salty-156605146_orjot3.webp" },
+      { label: "Necklace Sets", href: "/shop/women?category=necklace-sets", ariaLabel: "Women Necklace Sets", hoverImageUrl: "https://res.cloudinary.com/dpr46qjaz/image/upload/v1771474171/Jewellery-Sets_-Salty-156607652_gksa4p.webp" },
     ]
   },
   {
-    label: "Home Decor",
-    bgColor: "#170D27",
+    label: "Collections",
+    bgColor: "#0D0716",
     textColor: "#fff",
     links: [
-      { label: "Decor Objects", ariaLabel: "Decor Objects", hoverImageUrl: "https://res.cloudinary.com/dpr46qjaz/image/upload/v1771477389/kecFKxERx95SbWdvGJyiNxjMMLooY03dmQty4JIn9j0_dorm5v.webp" },
-      { label: "Vases", ariaLabel: "Vases", hoverImageUrl: "https://res.cloudinary.com/dpr46qjaz/image/upload/v1771477251/usLobRPmIaG_69i0SBeDUfUinhlYZSoixuGv6P9ypX8_ou4uf9.webp" },
-      { label: "Candles & Stands", ariaLabel: "Candles & Stands", hoverImageUrl: "https://res.cloudinary.com/dpr46qjaz/image/upload/v1771477340/aNeE8SIPCuCMdpu0GLQHy-oey_kiYe3jmxNH4Nhp4YQ_g0maye.webp" },
-      { label: "Clocks", ariaLabel: "Clocks", hoverImageUrl: "https://res.cloudinary.com/dpr46qjaz/image/upload/v1771477072/3gqN0buaWVjcCYcWdn560bJkUsbp7A80mz5RIvnZhGI_rj9wdp.jpg" },
-      { label: "Aroma Diffusers", ariaLabel: "Aroma Diffusers", hoverImageUrl: "https://res.cloudinary.com/dpr46qjaz/image/upload/v1771477340/aNeE8SIPCuCMdpu0GLQHy-oey_kiYe3jmxNH4Nhp4YQ_g0maye.webp" },
+      { label: "Best Sellers", href: "/collections/best-sellers", ariaLabel: "Best Sellers" },
+      { label: "Under ₹149", href: "/collections/under-149", ariaLabel: "Under 149" },
+      { label: "Under ₹299", href: "/collections/under-299", ariaLabel: "Under 299" },
+      { label: "Under ₹499", href: "/collections/under-499", ariaLabel: "Under 499" },
     ]
   }
 ];
@@ -43,15 +40,14 @@ export const navItems = [
 export const footerData = () => ({
   navigation: {
     product: [
-      { name: "Men's Collection", href: "/men" },
-      { name: "Women's Collection", href: "/women" },
-      { name: "Home Decor", href: "/home-decor" },
-      { name: "New Arrivals", href: "/new-arrivals" },
+      { name: "Men's Collection", href: "/shop/men" },
+      { name: "Women's Collection", href: "/shop/women" },
+      { name: "New Arrivals", href: "/search?q=new" },
     ],
     resources: [
       { name: "Our Story", href: "/about" },
-      { name: "Track Your Order", href: "/track-order" },
-      { name: "Returns & Exchanges", href: "/returns" },
+      { name: "Track Your Order", href: "/account/orders" },
+      { name: "Returns & Exchanges", href: "/privacy-policy#returns" },
       { name: "Contact Us", href: "/contact" },
     ]
   },
@@ -62,37 +58,27 @@ export const footerData = () => ({
     { icon: Linkedin, label: "LinkedIn", href: "https://linkedin.com/company/urbanslay" },
   ],
   bottomLinks: [
-    { href: "/privacy", label: "Privacy Policy" },
-    { href: "/terms", label: "Terms of Service" },
-    { href: "/refund", label: "Refund Policy" },
-    { href: "/shipping-policy", label: "Shipping Policy" },
+    { href: "/privacy-policy", label: "Privacy Policy" },
+    { href: "/privacy-policy/terms", label: "Terms of Service" },
+    { href: "/privacy-policy/refund", label: "Refund Policy" },
+    { href: "/privacy-policy/shipping", label: "Shipping Policy" },
   ],
 });
 
 export const heroImages = [
-    {
-      src_pc: "/hero-carousel/carousel1-pc.webp",
-      src_mobile: "/hero-carousel/carousel1-mobile.webp",
-      alt: "posters",
-    },
-    {
-      src_pc: "/hero-carousel/carousel1-pc.webp",
-      src_mobile: "/hero-carousel/carousel1-mobile.webp",
-      alt: "posters",
-    },
-    {
-      src_pc: "/hero-carousel/carousel1-pc.webp",
-      src_mobile: "/hero-carousel/carousel1-mobile.webp",
-      alt: "posters",
-    },
-    {
-      src_pc: "/hero-carousel/carousel1-pc.webp",
-      src_mobile: "/hero-carousel/carousel1-mobile.webp",
-      alt: "posters",
-    },
-    {
-      src_pc: "/hero-carousel/carousel1-pc.webp",
-      src_mobile: "/hero-carousel/carousel1-mobile.webp",
-      alt: "posters",
-    },
-  ]
+  {
+    src_pc: "/hero-carousel/carousel2.jpg",
+    src_mobile: "/hero-carousel/carousel2mobile.jpg",
+    alt: "posters",
+  },
+  {
+    src_pc: "/hero-carousel/carousel3.jpg",
+    src_mobile: "/hero-carousel/carousel3mobile.jpg",
+    alt: "posters",
+  },
+  {
+    src_pc: "/hero-carousel/carousel4.jpg",
+    src_mobile: "/hero-carousel/carousel4mobile.jpg",
+    alt: "posters",
+  }
+]
