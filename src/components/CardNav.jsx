@@ -22,6 +22,7 @@ const CardNav = ({
   const [isHamburgerOpen, setIsHamburgerOpen] = useState(false);
   const [isExpanded, setIsExpanded] = useState(false);
   const [hoveredImages, setHoveredImages] = useState({});
+  const [isMobileSearchOpen, setIsMobileSearchOpen] = useState(false);
   const navRef = useRef(null);
   const cardsRef = useRef([]);
   const tlRef = useRef(null);
@@ -200,12 +201,45 @@ const CardNav = ({
                 <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" className="lucide lucide-search"><circle cx="11" cy="11" r="8" /><path d="m21 21-4.3-4.3" /></svg>
               </button>
             </form>
-            <a
-              href="/search"
-              className="nav-icon-btn flex md:hidden items-center justify-center w-10 h-10 rounded-full bg-black/5 text-black hover:bg-black/10 transition-colors"
-              aria-label="Search">
-              <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" className="lucide lucide-search"><circle cx="11" cy="11" r="8" /><path d="m21 21-4.3-4.3" /></svg>
-            </a>
+            <div className="flex md:hidden items-center justify-center w-10 h-10 relative">
+              <div className={`transition-all duration-300 flex items-center ${isMobileSearchOpen ? 'w-[200px] sm:w-[250px] bg-white rounded-full shadow-md ring-1 ring-black/10 absolute right-0 z-[100] h-10' : 'w-10 h-10 rounded-full bg-black/5 hover:bg-black/10 right-0 absolute'}`}>
+                <form action="/search" method="get" className="flex items-center w-full h-full justify-center">
+                  {!isMobileSearchOpen ? (
+                    <button
+                      type="button"
+                      onClick={(e) => {
+                        e.preventDefault();
+                        setIsMobileSearchOpen(true);
+                      }}
+                      className="flex items-center justify-center w-full h-full text-black transition-colors"
+                      aria-label="Search">
+                      <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" className="lucide lucide-search"><circle cx="11" cy="11" r="8" /><path d="m21 21-4.3-4.3" /></svg>
+                    </button>
+                  ) : (
+                    <>
+                      <input
+                        autoFocus
+                        type="text"
+                        name="q"
+                        placeholder="Search..."
+                        className="bg-transparent border-none text-[13px] text-black outline-none flex-1 px-3 py-1 w-full h-full rounded-l-full"
+                        onBlur={(e) => {
+                          setTimeout(() => {
+                            if (!e.target.value) setIsMobileSearchOpen(false);
+                          }, 200);
+                        }}
+                      />
+                      <button type="submit" className="flex items-center justify-center text-black/60 hover:text-black transition-colors p-2" aria-label="Search">
+                        <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" className="lucide lucide-search"><circle cx="11" cy="11" r="8" /><path d="m21 21-4.3-4.3" /></svg>
+                      </button>
+                      <button type="button" onClick={() => setIsMobileSearchOpen(false)} className="flex items-center justify-center text-black/40 hover:text-black transition-colors p-2 pr-3" aria-label="Close">
+                        <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" className="lucide lucide-x"><path d="M18 6 6 18" /><path d="m6 6 12 12" /></svg>
+                      </button>
+                    </>
+                  )}
+                </form>
+              </div>
+            </div>
             {/* Wishlist (Like) - hidden on mobile, shown when expanded or on desktop */}
             <a
               href="/account/wishlist"

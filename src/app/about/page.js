@@ -12,9 +12,9 @@ export default function AboutPage() {
                 </div>
 
                 <div className="grid grid-cols-1 md:grid-cols-2 gap-16 items-center">
-                    <div className="relative aspect-[4/5] bg-gray-100 rounded-lg overflow-hidden">
+                    <div className="relative  bg-gray-100 rounded-lg overflow-hidden">
                         <img
-                            src="https://images.unsplash.com/photo-1599643478524-fb5244098775?q=80&w=2000&auto=format&fit=crop"
+                            src="https://cdn.shopify.com/s/files/1/0644/2457/5191/files/About_Us_Image_b4672f80-1f13-473e-9dc8-a5513f2b22bf_480x480.webp?v=1699063090"
                             alt="Jewelry making"
                             className="object-cover w-full h-full"
                         />
