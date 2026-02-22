@@ -17,6 +17,7 @@ export default function CartPage() {
     const [address, setAddress] = useState({ street: "", city: "", state: "", postalCode: "" });
     const [isProcessing, setIsProcessing] = useState(false);
     const [showModal, setShowModal] = useState(false);
+    const [errorMsg, setErrorMsg] = useState("");
 
     const cartTotalAmount = cart.reduce(
         (acc, item) => acc + (item.price || 0) * item.quantity,
@@ -168,14 +169,24 @@ export default function CartPage() {
             )}
 
             {showModal && (
-                <div className="fixed inset-0 bg-black/40 z-50 flex items-center justify-center p-4 backdrop-blur-sm transition-opacity">
+                <div className="fixed inset-0 bg-black/40 z-999 flex items-center justify-center p-4 backdrop-blur-sm transition-opacity">
                     <div className="bg-white rounded-2xl w-full max-w-xl max-h-[90vh] overflow-y-auto shadow-2xl relative animate-in fade-in zoom-in-95 duration-200">
                         <div className="sticky top-0 bg-white/90 backdrop-blur-md border-b border-gray-100 p-6 flex justify-between items-center z-10 rounded-t-2xl">
                             <h3 className="text-xl font-serif tracking-wide text-gray-900">Delivery Details</h3>
-                            <button onClick={() => setShowModal(false)} className="text-gray-400 hover:text-black transition-colors rounded-full p-1 hover:bg-gray-100">
+                            <button onClick={() => { setShowModal(false); setErrorMsg(""); }} className="text-gray-400 hover:text-black transition-colors rounded-full p-1 hover:bg-gray-100">
                                 <X size={20} />
                             </button>
                         </div>
+
+                        {errorMsg && (
+                            <div className="fixed bottom-6 left-1/2 -translate-x-1/2 z-1000 bg-red-500 text-white px-6 py-4 rounded-full shadow-[0_8px_30px_rgba(239,68,68,0.3)] flex items-center gap-3 animate-in slide-in-from-bottom-5 fade-in duration-300">
+                                <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" className="lucide lucide-alert-circle"><circle cx="12" cy="12" r="10" /><line x1="12" y1="8" x2="12" y2="12" /><line x1="12" y1="16" x2="12.01" y2="16" /></svg>
+                                <span className="text-sm font-bold tracking-wide">{errorMsg}</span>
+                                <button onClick={() => setErrorMsg("")} className="ml-2 hover:bg-white/20 rounded-full p-1 transition-colors">
+                                    <X size={16} />
+                                </button>
+                            </div>
+                        )}
 
                         <div className="p-6 md:p-8">
                             <div className="mb-8">
@@ -208,10 +219,11 @@ export default function CartPage() {
                                     disabled={isProcessing}
                                     onClick={async () => {
                                         if (!contact.name || !contact.email || !contact.phone || !address.street || !address.city || !address.state || !address.postalCode) {
-                                            alert("Please fill in all contact and shipping information.");
+                                            setErrorMsg("Please fill in all contact and shipping information.");
                                             return;
                                         }
 
+                                        setErrorMsg("");
                                         setIsProcessing(true);
 
                                         // Create order function
@@ -236,17 +248,31 @@ export default function CartPage() {
                                             const TEMPLATE_ID = process.env.NEXT_PUBLIC_TEMPLATE_ID || 'YOUR_TEMPLATE_ID';
                                             const PUBLIC_KEY = process.env.NEXT_PUBLIC_PUBLIC_KEY || 'YOUR_PUBLIC_KEY';
 
-                                            const emailData = {
+                                            const emailDataCustomer = {
                                                 to_name: contact.name,
                                                 to_email: contact.email,
                                                 phone: contact.phone,
-                                                message: `Your order for ${cart.length} item(s) total ₹${finalTotal} has been placed successfully! Payment Method: ${paymentMethod.toUpperCase()}`,
+                                                message: `Your order for ${cart.length} item(s) total ₹${finalTotal} has been placed successfully! Payment Method: ${paymentMethod.toUpperCase()}. We are currently processing your order and will contact you once it has shipped.`,
                                                 from_name: "UrbanSlay"
                                             };
 
+                                            const emailDataOwner = {
+                                                to_name: "UrbanSlay Admin",
+                                                to_email: "urbanslay.in@gmail.com",
+                                                phone: contact.phone,
+                                                message: `NEW ORDER ALERT! You received a new order for ${cart.length} item(s) total ₹${finalTotal}. Payment Method: ${paymentMethod.toUpperCase()}. Customer: ${contact.name} | ${contact.email} | ${contact.phone}`,
+                                                from_name: "UrbanSlay Automated System"
+                                            };
+
                                             if (SERVICE_ID !== 'YOUR_SERVICE_ID') {
-                                                emailjs.send(SERVICE_ID, TEMPLATE_ID, emailData, PUBLIC_KEY).catch(err => {
-                                                    console.error("Order notification email failed:", err);
+                                                // 1. Send confirmation to the Customer
+                                                emailjs.send(SERVICE_ID, TEMPLATE_ID, emailDataCustomer, PUBLIC_KEY).catch(err => {
+                                                    console.error("Order notification email to customer failed:", err);
+                                                });
+
+                                                // 2. Send notification to the Owner
+                                                emailjs.send(SERVICE_ID, TEMPLATE_ID, emailDataOwner, PUBLIC_KEY).catch(err => {
+                                                    console.error("Order notification email to owner failed:", err);
                                                 });
                                             }
                                         };
@@ -262,14 +288,17 @@ export default function CartPage() {
                                                         sendOrderEmail();
                                                         emptyCart();
                                                         setShowModal(false);
-                                                        alert(`Payment Successful! Order placed.`);
                                                         router.push("/checkout");
                                                     } else {
-                                                        alert("Payment was successful but something went wrong logging the order.");
+                                                        setErrorMsg("Payment was successful but something went wrong logging the order.");
                                                     }
                                                     setIsProcessing(false);
                                                 },
                                                 onDismiss: () => {
+                                                    setIsProcessing(false);
+                                                },
+                                                onError: (msg) => {
+                                                    setErrorMsg(msg);
                                                     setIsProcessing(false);
                                                 }
                                             });
@@ -280,10 +309,9 @@ export default function CartPage() {
                                                 sendOrderEmail();
                                                 emptyCart();
                                                 setShowModal(false);
-                                                alert("Order Placed Successfully via Cash on Delivery!");
                                                 router.push("/checkout");
                                             } else {
-                                                alert("Something went wrong while placing your order.");
+                                                setErrorMsg("Something went wrong while placing your order.");
                                             }
                                             setIsProcessing(false);
                                         }

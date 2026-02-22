@@ -266,7 +266,7 @@ const ThumbStrip = ({
             key={index}
             type="button"
             onClick={() => onAutoplayButtonClick(() => onDotButtonClick(index))}
-            className={`flex-shrink-0 overflow-hidden rounded-md border-2 object-cover transition-all duration-200 ${direction === "vertical" ? "h-auto w-16" : "h-12 w-auto"
+            className={`shrink-0 overflow-hidden rounded-md border-2 object-cover transition-all duration-200 ${direction === "vertical" ? "h-auto w-16" : "h-12 w-auto"
               } ${index === selectedIndex
                 ? "scale-105 border opacity-100"
                 : "border opacity-20 hover:opacity-80"

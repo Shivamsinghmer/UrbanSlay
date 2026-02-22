@@ -8,11 +8,12 @@ export const loadRazorpayScript = () => {
     });
 };
 
-export const handlePayment = async ({ amount, description, onSuccess, onDismiss }) => {
+export const handlePayment = async ({ amount, description, onSuccess, onDismiss, onError }) => {
     const res = await loadRazorpayScript();
 
     if (!res) {
-        alert("Razorpay SDK failed to load. Are you online?");
+        if (onError) onError("Razorpay SDK failed to load. Are you online?");
+        else alert("Razorpay SDK failed to load. Are you online?");
         return;
     }
 
@@ -39,8 +40,6 @@ export const handlePayment = async ({ amount, description, onSuccess, onDismiss 
             handler: function (response) {
                 if (onSuccess) {
                     onSuccess(response);
-                } else {
-                    alert(`Payment Successful! Payment ID: ${response.razorpay_payment_id}`);
                 }
             },
             prefill: {
@@ -85,7 +84,8 @@ export const handlePayment = async ({ amount, description, onSuccess, onDismiss 
         paymentObject.open();
     } catch (error) {
         console.error("Payment Error:", error);
-        alert("Something went wrong with the payment.");
+        if (onError) onError(error?.message || "Something went wrong with the payment.");
+        else alert("Something went wrong with the payment.");
         if (onDismiss) onDismiss();
     }
 };

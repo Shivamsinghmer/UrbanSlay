@@ -32,6 +32,7 @@ export const navItems = [
       { label: "Under ₹149", href: "/collections/under-149", ariaLabel: "Under 149" },
       { label: "Under ₹299", href: "/collections/under-299", ariaLabel: "Under 299" },
       { label: "Under ₹499", href: "/collections/under-499", ariaLabel: "Under 499" },
+      { label: "Gift Hampers", href: "/shop/gift-hampers", ariaLabel: "Gift Hampers" },
     ]
   }
 ];
@@ -43,6 +44,7 @@ export const footerData = () => ({
       { name: "Men's Collection", href: "/shop/men" },
       { name: "Women's Collection", href: "/shop/women" },
       { name: "New Arrivals", href: "/search?q=new" },
+      { name: "Gift Hampers", href: "/shop/gift-hampers" },
     ],
     resources: [
       { name: "Our Story", href: "/about" },
