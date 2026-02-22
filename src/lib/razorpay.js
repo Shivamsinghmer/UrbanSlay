@@ -8,7 +8,7 @@ export const loadRazorpayScript = () => {
     });
 };
 
-export const handlePayment = async ({ amount, description, onSuccess }) => {
+export const handlePayment = async ({ amount, description, onSuccess, onDismiss }) => {
     const res = await loadRazorpayScript();
 
     if (!res) {
@@ -33,8 +33,8 @@ export const handlePayment = async ({ amount, description, onSuccess }) => {
             key: data.keyId,
             amount: data.amount,
             currency: data.currency,
-            name: "UrbanSlate",
-            description: description || "Payment for UrbanSlate",
+            name: "UrbanSlay",
+            description: description || "Payment for UrbanSlay",
             order_id: data.orderId,
             handler: function (response) {
                 if (onSuccess) {
@@ -44,19 +44,48 @@ export const handlePayment = async ({ amount, description, onSuccess }) => {
                 }
             },
             prefill: {
-                name: "Customer Name",
-                email: "customer@example.com",
-                contact: "9999999999",
+                name: "",
+                email: "",
+                contact: "",
             },
             theme: {
                 color: "#1a1a1a",
             },
+            config: {
+                display: {
+                    blocks: {
+                        upi: {
+                            name: "Pay via UPI",
+                            instruments: [
+                                {
+                                    method: "upi"
+                                }
+                            ]
+                        }
+                    },
+                    sequence: ["block.upi"],
+                    preferences: {
+                        show_default_blocks: true
+                    }
+                }
+            }
         };
 
         const paymentObject = new window.Razorpay(options);
+
+        paymentObject.on('payment.failed', function (response) {
+            if (onDismiss) onDismiss();
+        });
+
+        // if the user closes the modal
+        paymentObject.on('modal.closed', function () {
+            if (onDismiss) onDismiss();
+        });
+
         paymentObject.open();
     } catch (error) {
         console.error("Payment Error:", error);
         alert("Something went wrong with the payment.");
+        if (onDismiss) onDismiss();
     }
 };

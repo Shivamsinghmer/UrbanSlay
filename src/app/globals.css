@@ -4,41 +4,41 @@
 
 :root {
   /* core colors */
-  --background: #f8f7fa;
-  --foreground: #3d3c4f;
-  --primary: #8a79ab;
-  --secondary: #dfd9ec;
-  --accent: #e6a5b8;
+  --background: #fdfcfb;
+  --foreground: #111111;
+  --primary: #ff8000;
+  --secondary: #eceae5;
+  --accent: #c49262;
 
   /* UI */
   --card: #ffffff;
-  --muted: #dcd9e3;
-  --border: #cec9d9;
-  --input: #eae7f0;
+  --muted: #f4f3f0;
+  --border: #e6e4df;
+  --input: #f8f7f5;
 
   /* fonts */
-  --font-sans: Geist, sans-serif;
-  --font-serif: "Lora", Georgia, serif;
-  --font-mono: "Fira Code", monospace;
+  --font-sans: var(--font-geist-sans), sans-serif;
+  --font-serif: var(--font-serif), Georgia, serif;
+  --font-mono: var(--font-geist-mono), monospace;
 
   /* layout */
   --radius: 0.5rem;
-  --shadow: 0 2px 8px rgba(0, 0, 0, 0.06);
+  --shadow: 0 4px 14px rgba(0, 0, 0, 0.04);
 }
 
 .dark {
-  --background: #1a1823;
-  --foreground: #e0ddef;
-  --primary: #a995c9;
-  --secondary: #5a5370;
-  --accent: #f2b8c6;
+  --background: #111111;
+  --foreground: #f4f4f4;
+  --primary: #d4a373;
+  --secondary: #222222;
+  --accent: #e2ba93;
 
-  --card: #232030;
-  --muted: #242031;
-  --border: #302c40;
-  --input: #2a273a;
+  --card: #181818;
+  --muted: #1e1e1e;
+  --border: #2a2a2a;
+  --input: #1a1a1a;
 
-  --shadow: 0 2px 8px rgba(0, 0, 0, 0.3);
+  --shadow: 0 4px 14px rgba(0, 0, 0, 0.3);
 }
 
 /* Tailwind v4 mapping */
@@ -52,6 +52,8 @@
   --color-muted: var(--muted);
   --color-border: var(--border);
   --color-input: var(--input);
+  --font-sans: var(--font-sans);
+  --font-serif: var(--font-serif);
 }
 
 /* base styles */
@@ -63,7 +65,7 @@ body {
   font-family: var(--font-sans);
   background: var(--background);
   color: var(--foreground);
-  background-image: radial-gradient(#d1d1d1 0.5px, transparent 0.5px);
+  background-image: radial-gradient(rgba(0,0,0,0.03) 0.5px, transparent 0.5px);
   background-size: 24px 24px;
 }
 

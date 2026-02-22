@@ -1,4 +1,4 @@
-import { Twitter, Github, MessageCircle, Linkedin } from "lucide-react";
+import { Twitter, Github, MessageCircle, Linkedin, Instagram } from "lucide-react";
 
 export const navItems = [
   {
@@ -52,10 +52,7 @@ export const footerData = () => ({
     ]
   },
   socialLinks: [
-    { icon: Twitter, label: "Twitter", href: "https://twitter.com/urbanslay" },
-    { icon: Github, label: "GitHub", href: "https://github.com/urbanslay" },
-    { icon: MessageCircle, label: "Message", href: "#" },
-    { icon: Linkedin, label: "LinkedIn", href: "https://linkedin.com/company/urbanslay" },
+    { icon: Instagram, label: "Instagram", href: "https://www.instagram.com/urbanslay.in/" },
   ],
   bottomLinks: [
     { href: "/privacy-policy", label: "Privacy Policy" },

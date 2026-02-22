@@ -45,10 +45,10 @@ const TopProducts = () => {
 
     return (
         <div className="py-20 px-4 max-w-7xl mx-auto">
-            <h2 className="text-center font-serif text-3xl md:text-5xl font-light tracking-wide mb-4 text-[#1a1a1a]">
+            <h2 className="text-center font-serif text-4xl md:text-5xl lg:text-6xl font-medium tracking-wide mb-6 text-[#1a1a1a]">
                 Our Bestsellers
             </h2>
-            <p className="text-center text-gray-500 text-xs md:text-sm tracking-[0.2em] uppercase mb-12">
+            <p className="text-center text-gray-500 text-xs md:text-sm tracking-[0.25em] uppercase mb-16 font-light">
                 Timeless pieces loved by you
             </p>
 

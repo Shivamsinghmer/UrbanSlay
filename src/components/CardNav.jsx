@@ -160,8 +160,8 @@ const CardNav = ({
       className={`card-nav-container fixed left-1/2 -translate-x-1/2 w-[90%] max-w-[1200px] z-[99] top-[1.2em] md:top-[2em] ${className}`}>
       <nav
         ref={navRef}
-        className={`card-nav w-full ${isExpanded ? 'open rounded-2xl' : 'rounded-2xl'} block p-0 shadow-[0_4px_30px_rgba(0,0,0,0.05)] backdrop-blur-md border border-white/40 relative overflow-hidden will-change-[height] transition-[border-radius] duration-300`}
-        style={{ backgroundColor: "rgba(255, 255, 255, 0.85)" }}>
+        className={`card-nav w-full ${isExpanded ? 'open rounded-2xl' : 'rounded-2xl'} block p-0 shadow-[0_8px_40px_rgba(0,0,0,0.06)] backdrop-blur-2xl border border-white/60 relative overflow-hidden will-change-[height] transition-[border-radius] duration-300`}
+        style={{ backgroundColor: "rgba(255, 255, 255, 0.65)" }}>
         <div
           className="card-nav-top absolute inset-x-0 top-0 h-15 flex items-center justify-between p-2 pl-[1.1rem] z-2">
           {/* Left Side: Hamburger & Logo */}
@@ -195,7 +195,7 @@ const CardNav = ({
 
           {/* Right Side: Action Buttons */}
           <div className="card-nav-buttons flex items-center justify-end gap-2 md:gap-3 order-3 lg:w-1/4">
-            <form action="/search" method="get" className="hidden md:flex items-center rounded-full overflow-hidden px-2 py-1 bg-black/5 hover:bg-black/10 focus-within:bg-white focus-within:shadow-sm focus-within:ring-1 focus-within:ring-black/10 transition-all duration-300 border border-transparent">
+            <form action="/search" method="get" className="hidden md:flex items-center rounded-full overflow-hidden px-3 py-1.5 bg-white/40 backdrop-blur-md hover:bg-white/60 focus-within:bg-white focus-within:shadow-[0_4px_20px_rgba(0,0,0,0.08)] focus-within:ring-1 focus-within:ring-black/5 transition-all duration-500 border border-white/60">
               <input type="text" name="q" placeholder="Search..." className="bg-transparent border-none text-[13px] text-black outline-none w-28 lg:w-40 px-2 py-1 focus:w-40 lg:focus:w-56 transition-all duration-300 placeholder-black/50" />
               <button type="submit" className="flex items-center justify-center text-black/60 hover:text-black transition-colors" aria-label="Search">
                 <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" className="lucide lucide-search"><circle cx="11" cy="11" r="8" /><path d="m21 21-4.3-4.3" /></svg>
@@ -243,7 +243,7 @@ const CardNav = ({
             {/* Wishlist (Like) - hidden on mobile, shown when expanded or on desktop */}
             <a
               href="/account/wishlist"
-              className={`nav-icon-btn relative items-center justify-center w-10 h-10 rounded-3xl px-3 bg-black/5 text-black hover:bg-black/10 transition-colors ${isExpanded ? 'flex' : 'hidden'} md:flex`}
+              className={`nav-icon-btn relative items-center justify-center w-11 h-11 rounded-full bg-white/40 backdrop-blur-md hover:bg-white/60 text-black border border-white/60 shadow-sm transition-all duration-500 hover:shadow-[0_4px_20px_rgba(0,0,0,0.08)] ${isExpanded ? 'flex' : 'hidden'} md:flex`}
               aria-label="Wishlist">
               <GoHeart size={20} />
               {wishlist.length > 0 && (
@@ -258,14 +258,14 @@ const CardNav = ({
                 <SignInButton mode="modal">
                   <button
                     type="button"
-                    className="nav-icon-btn flex items-center justify-center w-10 h-10 rounded-full bg-black/5 text-black hover:bg-black/10 transition-colors"
+                    className="nav-icon-btn flex items-center justify-center w-11 h-11 rounded-full bg-white/40 backdrop-blur-md hover:bg-white/60 text-black border border-white/60 shadow-sm transition-all duration-500 hover:shadow-[0_4px_20px_rgba(0,0,0,0.08)]"
                     aria-label="Sign In">
                     <GoPerson size={20} />
                   </button>
                 </SignInButton>
               </SignedOut>
               <SignedIn>
-                <div className="w-10 h-10 flex items-center justify-center rounded-full bg-black/5 hover:bg-black/10 transition-all duration-300">
+                <div className="w-11 h-11 flex items-center justify-center rounded-full bg-white/40 backdrop-blur-md border border-white/60 shadow-sm hover:bg-white/60 transition-all duration-500 hover:shadow-[0_4px_20px_rgba(0,0,0,0.08)]">
                   <UserButton
                     appearance={{
                       elements: {
@@ -279,7 +279,7 @@ const CardNav = ({
             {/* Cart - always visible */}
             <a
               href="/account/cart"
-              className="nav-icon-btn relative flex items-center justify-center w-10 h-10 rounded-3xl px-3 bg-black/5 text-black hover:bg-black/10 transition-colors"
+              className="nav-icon-btn relative flex items-center justify-center w-11 h-11 rounded-full bg-white/40 backdrop-blur-md hover:bg-white/60 text-black border border-white/60 shadow-sm transition-all duration-500 hover:shadow-[0_4px_20px_rgba(0,0,0,0.08)]"
               aria-label="Cart">
               <ShoppingCart size={18} strokeWidth={2} />
               {cartTotal > 0 && (
@@ -298,7 +298,7 @@ const CardNav = ({
           {(items || []).map((item, idx) => (
             <div
               key={`${item.label}-${idx}`}
-              className="nav-card nav-card-mobile-height select-none relative flex flex-col gap-3 p-6 rounded-2xl min-w-0 flex-[1_1_auto] h-auto lg:h-auto lg:flex-[1_1_auto] overflow-hidden bg-black/3 hover:bg-black/5 border border-black/5 transition-colors duration-300"
+              className="nav-card nav-card-mobile-height select-none relative flex flex-col gap-3 p-6 rounded-3xl min-w-0 flex-[1_1_auto] h-auto lg:h-auto lg:flex-[1_1_auto] overflow-hidden bg-white/40 backdrop-blur-md hover:bg-white/60 border border-white/50 shadow-[0_4px_24px_rgba(0,0,0,0.02)] transition-all duration-500"
               ref={setCardRef(idx)}
               style={{ color: "#111" }}>
               <div className="flex flex-col lg:flex-row lg:gap-4 w-full">

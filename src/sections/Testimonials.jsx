@@ -63,9 +63,12 @@ const Testimonials = () => {
     }, [emblaApi]);
 
     return (
-        <div className="py-24 px-4 bg-white overflow-hidden">
-            <div className="max-w-7xl mx-auto text-center">
-                <h2 className="text-3xl md:text-4xl mb-16 font-serif tracking-tight text-[#1a5b4f] italic">
+        <div className="py-24 px-4 overflow-hidden relative">
+            {/* Subtle background glow */}
+            <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-full max-w-2xl aspect-square bg-primary/5 rounded-full blur-[100px] pointer-events-none"></div>
+
+            <div className="max-w-7xl mx-auto text-center relative z-10">
+                <h2 className="text-4xl md:text-5xl lg:text-6xl mb-16 font-serif tracking-wide text-gray-900 drop-shadow-xs">
                     Trusted by our community
                 </h2>
 
@@ -87,20 +90,20 @@ const Testimonials = () => {
                     <div className="overflow-hidden" ref={emblaRef}>
                         <div className="flex">
                             {reviews.map((review, idx) => (
-                                <div key={idx} className="flex-[0_0_100%] md:flex-[0_0_33.33%] min-w-0 px-4">
-                                    <div className="flex flex-col items-center h-full">
-                                        <div className="flex gap-1 mb-4 text-[#212121]">
-                                            {[...Array(5)].map((_, i) => <Star key={i} size={14} fill="currentColor" />)}
+                                <div key={idx} className="flex-[0_0_100%] md:flex-[0_0_33.33%] min-w-0 px-4 py-8">
+                                    <div className="flex flex-col items-center h-full bg-white rounded-4xl p-8 shadow-[0_4px_24px_rgba(0,0,0,0.04)] border border-black/5 hover:shadow-[0_12px_40px_rgba(0,0,0,0.08)] transition-all duration-500 hover:-translate-y-1">
+                                        <div className="flex gap-1 mb-6 text-primary drop-shadow-xs">
+                                            {[...Array(5)].map((_, i) => <Star key={i} size={16} fill="currentColor" />)}
                                         </div>
-                                        <p className="text-sm font-medium mb-4 text-gray-800 tracking-tight">{review.name}</p>
-                                        <p className="text-xs text-gray-600 leading-relaxed mb-8 max-w-75">
+                                        <p className="text-base font-medium mb-6 text-gray-900 tracking-wide font-serif">{review.name}</p>
+                                        <p className="text-sm text-gray-500 leading-relaxed mb-8 max-w-xs font-light tracking-wide">
                                             {review.text}
                                         </p>
-                                        <div className="mt-auto bg-[#f8f8f8] rounded-sm p-2 flex items-center gap-3 cursor-pointer hover:bg-gray-100 transition-colors w-full max-w-55 shadow-sm">
-                                            <div className="w-12 h-12 bg-white rounded-sm overflow-hidden shrink-0">
+                                        <div className="mt-auto bg-muted/30 rounded-full p-2 pr-6 flex items-center gap-4 cursor-pointer hover:bg-muted/60 transition-colors w-full shadow-sm ring-1 ring-black/5">
+                                            <div className="w-12 h-12 bg-white rounded-full overflow-hidden shrink-0 shadow-sm ring-1 ring-black/5">
                                                 <Image src={review.img} width={48} height={48} className="object-cover h-full w-full" alt="Product" />
                                             </div>
-                                            <span className="text-[10px] font-medium underline tracking-tight text-gray-900 line-clamp-2 text-left">{review.product}</span>
+                                            <span className="text-[11px] font-bold tracking-widest uppercase text-gray-900 line-clamp-1 text-left">{review.product}</span>
                                         </div>
                                     </div>
                                 </div>
@@ -109,9 +112,9 @@ const Testimonials = () => {
                     </div>
                 </div>
 
-                <div className="mt-16">
+                <div className="mt-12">
                     <Link href="/reviews">
-                        <button className="px-10 py-3 border border-black text-[10px] font-semibold tracking-[0.2em] uppercase hover:bg-black hover:text-white transition-all cursor-pointer">
+                        <button className="px-12 py-4 bg-transparent border border-black text-black text-[11px] font-bold tracking-[0.25em] uppercase hover:bg-black hover:text-white transition-all duration-500 rounded-full shadow-sm hover:shadow-[0_8px_30px_rgba(0,0,0,0.12)] cursor-pointer">
                             View All Reviews
                         </button>
                     </Link>

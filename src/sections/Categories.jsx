@@ -51,24 +51,24 @@ const Categories = () => {
                 Curated Collections for Every Moment
             </p>
 
-            <div className="grid grid-cols-2 lg:grid-cols-3 xl:grid-cols-6 gap-3 md:gap-4">
+            <div className="grid grid-cols-2 lg:grid-cols-3 xl:grid-cols-6 gap-6 md:gap-8 px-4">
                 {displayCategories.map((category, index) => (
-                    <a href={`/search?q=${encodeURIComponent(category.name || "")}`} key={index} className="relative group cursor-pointer overflow-hidden aspect-3/4 rounded-sm shadow-sm ring-1 ring-black/5 block">
+                    <a href={`/search?q=${encodeURIComponent(category.name || "")}`} key={index} className="relative group cursor-pointer overflow-hidden aspect-3/4 rounded-2xl md:rounded-4xl shadow-[0_4px_24px_rgba(0,0,0,0.06)] hover:shadow-[0_12px_40px_rgba(0,0,0,0.12)] bg-white block transition-all duration-500 hover:-translate-y-2">
                         <img
-                            className="w-full h-full object-cover object-top transition-transform duration-700 ease-out group-hover:scale-110"
+                            className="w-full h-full object-cover object-center transition-transform duration-1000 ease-out group-hover:scale-110"
                             src={category.image || category.img || "/placeholder.jpg"}
                             alt={category.name || "Category Image"}
                         />
                         {/* Elegant Gradient Overlay */}
-                        <div className="absolute inset-0 bg-linear-to-t from-black/60 via-black/20 to-transparent opacity-60 group-hover:opacity-80 transition-opacity duration-500"></div>
+                        <div className="absolute inset-0 bg-linear-to-t from-black/70 via-black/10 to-transparent opacity-70 group-hover:opacity-90 transition-opacity duration-500"></div>
 
                         {/* Category Name Label */}
-                        <div className="absolute inset-x-0 bottom-0 p-6 flex flex-col items-center">
-                            <span className="text-white text-[11px] md:text-xs font-medium tracking-[0.25em] uppercase border-b border-transparent group-hover:border-white pb-1 transition-all duration-300">
+                        <div className="absolute inset-x-0 bottom-0 p-6 md:p-8 flex flex-col items-center">
+                            <span className="text-white text-[12px] md:text-[13px] font-bold tracking-[0.2em] md:tracking-[0.25em] uppercase border-b-2 border-transparent group-hover:border-white/80 pb-1.5 transition-all duration-300 drop-shadow-md">
                                 {category.name}
                             </span>
-                            <span className="text-white/0 group-hover:text-white/80 text-[10px] tracking-widest uppercase mt-2 transition-all duration-500 transform translate-y-2 group-hover:translate-y-0">
-                                Explore
+                            <span className="text-white/0 group-hover:text-white/80 text-[9px] tracking-[0.3em] font-medium uppercase mt-2.5 transition-all duration-500 transform translate-y-4 group-hover:translate-y-0 text-center">
+                                Explore Collection
                             </span>
                         </div>
                     </a>

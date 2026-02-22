@@ -1,4 +1,4 @@
-import { Geist, Geist_Mono, Cormorant_Garamond } from "next/font/google";
+import { Geist, Geist_Mono, Playfair_Display } from "next/font/google";
 import "./globals.css";
 import FooterStandard from "@/components/mvpblocks/footer-standard";
 import CardNav from "@/components/CardNav";
@@ -15,10 +15,11 @@ const geistMono = Geist_Mono({
   subsets: ["latin"],
 });
 
-const cormorant = Cormorant_Garamond({
-  variable: "--font-cormorant",
+const playfair = Playfair_Display({
+  variable: "--font-serif",
   subsets: ["latin"],
-  weight: ["300", "400", "500", "600", "700"],
+  weight: ["400", "500", "600", "700", "800", "900"],
+  style: ["normal", "italic"],
 });
 
 export const metadata = {
@@ -41,7 +42,7 @@ export default function RootLayout({ children }) {
 
       <html lang="en">
         <body
-          className={`${geistSans.variable} ${geistMono.variable} ${cormorant.variable} antialiased`}
+          className={`${geistSans.variable} ${geistMono.variable} ${playfair.variable} antialiased`}
         >
           <ShopProvider>
             <div className=" top-0 left-0 right-0 z-100">

@@ -3,14 +3,14 @@ import React from "react";
 import { motion } from "motion/react";
 import { Star } from "lucide-react";
 
-const Marquee = ({text}) => {
+const Marquee = ({ text }) => {
 
     const content = (
         <div className="flex items-center gap-12">
             <span className="text-[10px] md:text-[12px] font-medium tracking-[0.2em] uppercase">
                 {text}
             </span>
-            <Star className="w-3 h-3 text-white/40" fill="currentColor" />
+            <Star className="w-3 h-3 text-primary" fill="currentColor" />
         </div>
     );
 

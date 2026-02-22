@@ -14,18 +14,18 @@ export default function ProductCard({ product }) {
 
     return (
         <Link href={`/product/${product._id}`} className="group relative flex flex-col cursor-pointer">
-            <div className="relative aspect-4/5 overflow-hidden bg-[#f9f9f9] rounded-sm transition-all duration-500 group-hover:shadow-xl">
+            <div className="relative aspect-4/5 overflow-hidden bg-muted rounded-3xl transition-all duration-700 ease-out shadow-[0_4px_24px_rgba(0,0,0,0.04)] group-hover:shadow-[0_12px_40px_rgba(0,0,0,0.12)] group-hover:-translate-y-1">
                 {product.buyOneGetOne && (
-                    <div className="absolute top-4 left-0 z-10">
-                        <div className="bg-[#D4A373] text-white text-[10px] px-3 py-1 font-medium tracking-widest uppercase shadow-sm">
+                    <div className="absolute top-4 left-4 z-10">
+                        <div className="bg-primary text-white text-[9px] px-3.5 py-1.5 font-bold tracking-[0.2em] uppercase rounded-full shadow-sm drop-shadow-md">
                             Buy 1 Get 1
                         </div>
                     </div>
                 )}
 
                 {(product.bestSeller || product.isTopProduct) && (
-                    <div className="absolute top-4 right-0 z-10">
-                        <div className="bg-black/70 backdrop-blur-md text-white text-[8px] md:text-[9px] px-3 py-1 font-bold tracking-[0.2em] uppercase rounded-l-xs shadow-sm ring-1 ring-white/10">
+                    <div className="absolute top-4 right-4 z-10">
+                        <div className="bg-white/90 backdrop-blur-md text-black text-[8px] md:text-[9px] px-3.5 py-1.5 font-bold tracking-[0.2em] uppercase rounded-full shadow-sm ring-1 ring-black/5 drop-shadow-md">
                             BESTSELLER
                         </div>
                     </div>
@@ -80,7 +80,7 @@ export default function ProductCard({ product }) {
                             if (!cartItem) addToCart(product);
                             router.push('/account/cart');
                         }}
-                        className="w-full bg-[#D4A373] text-white text-[11px] font-bold tracking-widest py-3 rounded-xs hover:bg-[#c29161] transition-colors duration-300 flex items-center justify-center gap-2 shadow-lg cursor-pointer uppercase"
+                        className="w-full bg-primary text-white text-[11px] font-bold tracking-widest py-3 hover:bg-black transition-colors duration-500 flex items-center justify-center gap-2 shadow-lg cursor-pointer uppercase rounded-full border border-black/5"
                     >
                         BUY NOW
                     </button>

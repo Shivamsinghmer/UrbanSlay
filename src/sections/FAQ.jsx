@@ -35,31 +35,31 @@ const FAQ = () => {
     return (
         <div className="py-24 px-4 max-w-4xl mx-auto">
             <div className="flex flex-col items-center mb-16 text-center">
-                <h2 className="font-serif text-3xl md:text-5xl font-light tracking-wide text-gray-900 mb-4">
+                <h2 className="font-serif text-4xl md:text-5xl lg:text-6xl font-medium tracking-wide text-gray-900 mb-6 drop-shadow-xs">
                     Common Questions
                 </h2>
-                <div className="w-16 h-px bg-[#D4A373] mb-6"></div>
-                <p className="text-gray-500 text-[10px] md:text-xs tracking-[0.3em] uppercase">
+                <div className="w-16 h-0.5 bg-primary/60 mb-8 rounded-full"></div>
+                <p className="text-gray-500 text-[10px] md:text-xs tracking-[0.35em] uppercase font-light">
                     Your queries, answered
                 </p>
             </div>
 
             <div className="space-y-2">
                 {faqs.map((faq, index) => (
-                    <div key={index} className="border-b border-gray-100 last:border-0 overflow-hidden">
+                    <div key={index} className="border-b border-black/5 last:border-0 overflow-hidden">
                         <button
                             onClick={() => setOpenFaq(openFaq === index ? null : index)}
                             className="w-full flex justify-between items-center text-left py-6 cursor-pointer group"
                         >
-                            <span className={`text-sm md:text-base tracking-tight transition-colors duration-300 ${openFaq === index ? "text-[#D4A373] font-medium" : "text-gray-700 group-hover:text-black"}`}>
+                            <span className={`text-sm md:text-base tracking-wide transition-colors duration-300 font-serif ${openFaq === index ? "text-primary font-medium" : "text-gray-700 group-hover:text-black"}`}>
                                 {faq.q}
                             </span>
-                            <div className={`p-1 rounded-full transition-all duration-300 ${openFaq === index ? "bg-[#D4A373] text-white rotate-180" : "bg-gray-50 text-gray-400 group-hover:bg-gray-100"}`}>
+                            <div className={`p-1.5 rounded-full transition-all duration-500 select-none ${openFaq === index ? "bg-primary text-white rotate-180 shadow-md" : "bg-muted/50 text-gray-400 group-hover:bg-muted group-hover:text-gray-600"}`}>
                                 <ChevronDown size={14} />
                             </div>
                         </button>
                         <div
-                            className={`transition-all duration-500 ease-in-out ${openFaq === index ? "max-h-[300px] opacity-100 pb-8" : "max-h-0 opacity-0"}`}
+                            className={`transition-all duration-500 ease-in-out ${openFaq === index ? "max-h-75 opacity-100 pb-8" : "max-h-0 opacity-0"}`}
                         >
                             <p className="text-xs md:text-sm text-gray-500 leading-relaxed pr-10">
                                 {faq.a}
@@ -69,9 +69,9 @@ const FAQ = () => {
                 ))}
             </div>
 
-            <div className="mt-20 p-8 bg-[#f9f9f9] border border-gray-100 rounded-xs text-center">
-                <p className="text-xs text-gray-500 mb-4 tracking-wide">Still have questions?</p>
-                <a href="mailto:queries@UrbanSlay.co.in" className="text-xs font-bold tracking-[0.2em] uppercase border-b border-black pb-1 hover:text-[#D4A373] hover:border-[#D4A373] transition-all">
+            <div className="mt-20 p-10 bg-muted/30 border border-black/5 rounded-4xl text-center shadow-[0_4px_24px_rgba(0,0,0,0.02)]">
+                <p className="text-sm font-serif text-gray-500 mb-4 tracking-wide">Still have questions?</p>
+                <a href="mailto:queries@UrbanSlay.co.in" className="text-[11px] font-bold tracking-[0.25em] uppercase border-b-2 border-transparent hover:border-black/20 pb-1 text-gray-900 hover:text-primary transition-all duration-300">
                     Get in touch with us
                 </a>
             </div>

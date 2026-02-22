@@ -3,6 +3,7 @@
 import { useCallback, useEffect, useRef, useState } from "react"
 import Autoplay from "embla-carousel-autoplay"
 import useEmblaCarousel from "embla-carousel-react"
+import Fade from "embla-carousel-fade"
 import { ChevronLeft, ChevronRight, Pause, Play, X } from "lucide-react";
 
 import { Button } from "@/components/ui/button"
@@ -33,12 +34,18 @@ const Carousel = (props) => {
   const [lightboxOpen, setLightboxOpen] = useState(false)
   const [lightboxIndex, setLightboxIndex] = useState(0)
 
+  const plugins = autoplayDelay > 0
+    ? [Autoplay({ playOnInit: true, delay: autoplayDelay, stopOnInteraction: false })]
+    : [];
+
+  if (transition === "fade") {
+    plugins.push(Fade());
+  }
+
   const [emblaRef, emblaApi] = useEmblaCarousel({
     loop: true,
     ...options,
-  }, autoplayDelay > 0
-    ? [Autoplay({ playOnInit: true, delay: autoplayDelay, stopOnInteraction: false })]
-    : [])
+  }, plugins)
 
   const { autoplayIsPlaying, toggleAutoplay, onAutoplayButtonClick } =
     useAutoplay(emblaApi)
@@ -114,20 +121,13 @@ const Carousel = (props) => {
       <div className="min-w-0 flex-1">
         <div className="overflow-hidden" ref={emblaRef}>
           <div
-            className={`flex touch-pan-y touch-pinch-zoom ${transition === "fade" ? "relative" : ""
-              }`}>
+            className={`flex touch-pan-y touch-pinch-zoom`}>
             {slides.map((slideContent, index) => (
               <div
                 key={index}
                 onClick={() => handleSlideClick(index)}
-                className={` ${transition === "fade"
-                  ? `absolute inset-0 transition-opacity duration-700 ${index === selectedIndex
-                    ? "relative opacity-100"
-                    : "absolute opacity-0"
-                  }`
-                  : "flex-[0_0_100%] min-w-0 transform-gpu"
-                  } ${lightbox ? "cursor-zoom-in" : ""} `}>
-                <div className="px-1">
+                className={`flex-[0_0_100%] min-w-0 transform-gpu ${lightbox ? "cursor-zoom-in" : ""} `}>
+                <div className="px-1 h-full">
                   {slideContent}
                 </div>
               </div>
