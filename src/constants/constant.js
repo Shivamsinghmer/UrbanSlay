@@ -68,16 +68,16 @@ export const heroImages = [
   {
     src_pc: "/hero-carousel/carousel2.jpg",
     src_mobile: "/hero-carousel/carousel2mobile.jpg",
-    alt: "posters",
+    alt: "UrbanSlay Exclusive Men's and Women's Jewelry Collection",
   },
   {
     src_pc: "/hero-carousel/carousel3.jpg",
     src_mobile: "/hero-carousel/carousel3mobile.jpg",
-    alt: "posters",
+    alt: "Modern Rings, Bracelets and Necklaces by UrbanSlay",
   },
   {
     src_pc: "/hero-carousel/carousel4.jpg",
     src_mobile: "/hero-carousel/carousel4mobile.jpg",
-    alt: "posters",
+    alt: "Premium Lifestyle Jewelry Accessories For Him and Her",
   }
 ]
