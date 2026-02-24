@@ -15,7 +15,9 @@ export async function POST(req) {
         if (!user) return NextResponse.json({ error: "User not found" }, { status: 404 });
 
         if (action === "add") {
-            if (!user.wishlist.includes(productId)) {
+            // Use .toString() comparison so Mongoose ObjectIds match string productId
+            const alreadyInWishlist = user.wishlist.some(id => id.toString() === productId);
+            if (!alreadyInWishlist) {
                 user.wishlist.push(productId);
             }
         } else {
