@@ -81,3 +81,42 @@ export const heroImages = [
     alt: "Premium Lifestyle Jewelry Accessories For Him and Her",
   }
 ]
+
+export const reviews = [
+  {
+    name: "Pratyush G.",
+    text: '"This piece is just amazing, I want to purchase 1 more set but it was out of stock 😭 😭 😭 I wish I could get more"',
+    product: "Palm Leaf Chain",
+    img: "https://res.cloudinary.com/dpr46qjaz/image/upload/v1771474479/MN1S0556_White_20_281_29_rlgbxm.webp"
+  },
+  {
+    name: "Riddhima G.",
+    text: '"They are soooo pretty. I always wished to have such earrings in real gold, but gold is sooo expensive now. So I am glad I stumbled into UrbanSlay. Thank you and keep up the awesome work."',
+    product: "Infinity Jewelry Set",
+    img: "https://res.cloudinary.com/dpr46qjaz/image/upload/v1771474171/Jewellery-Sets_-Salty-156607652_gksa4p.webp"
+  },
+  {
+    name: "Prachi",
+    text: '"My experience was amazing after purchasing this product. I was eagerly waiting to buy this. Price and quality is amazing you can buy it. It\'s give a tough competition to gold products."',
+    product: "Bracelet",
+    img: "https://res.cloudinary.com/dpr46qjaz/image/upload/v1771474075/Bracelets_-Salty-156605755_zrgujq.webp"
+  },
+  {
+    name: "Piyush",
+    text: '"Absolutely love the unique and edgy design of this bracelet. The quality is exceptional and it feels very premium. Highly recommended!"',
+    product: "Nail Bangle Bracelet",
+    img: "https://res.cloudinary.com/dpr46qjaz/image/upload/v1771474594/Salty-1949256_6731d7bd-2d4e-4613-9717-115483a412ee_vm7rgw.webp"
+  },
+  {
+    name: "Shrija K.",
+    text: '"The pendant is incredibly beautiful and delicate! The blue stone shines so beautifully in the sunlight. I\'ve received so many compliments already. Best purchase ever!"',
+    product: "Blue Heart Pendant",
+    img: "https://res.cloudinary.com/dpr46qjaz/image/upload/v1771473977/BIPS0004P07_YAA14DIG6BLTOXXXX_ABCD00-PICS-00004-1024-34391_utruqa.webp"
+  },
+  {
+    name: "Shreya S.",
+    text: '"These hoops are a game changer! They are so lightweight I almost forget I\'m wearing them, but they give a very premium and classy look. Simply perfect for daily wear."',
+    product: "Gold Hoop Earrings",
+    img: "https://res.cloudinary.com/dpr46qjaz/image/upload/v1771473864/Earrings_-Salty-156605146_orjot3.webp"
+  }
+];

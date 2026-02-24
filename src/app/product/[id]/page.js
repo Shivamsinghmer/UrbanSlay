@@ -78,7 +78,14 @@ export default function ProductDetailPage() {
                                 </div>
                             </div>
                         )}
-                        {product.buyOneGetOne && (
+                        {!product.inStock && (
+                            <div className="absolute top-4 left-0 z-10">
+                                <div className="bg-red-600 text-white text-[10px] px-3 py-1 font-bold tracking-[0.2em] uppercase shadow-sm">
+                                    OUT OF STOCK
+                                </div>
+                            </div>
+                        )}
+                        {product.buyOneGetOne && product.inStock && (
                             <div className="absolute top-4 left-0 z-10">
                                 <div className="bg-[#D4A373] text-white text-[10px] px-3 py-1 font-medium tracking-widest uppercase shadow-sm">
                                     Buy 1 Get 1
@@ -133,50 +140,58 @@ export default function ProductDetailPage() {
 
                         {/* Actions */}
                         <div className="flex flex-col gap-4 pt-4">
-                            <div className="flex flex-col sm:flex-row gap-4">
-                                {cartItem ? (
-                                    <div className="w-full sm:flex-1 border border-black h-12 flex items-center justify-between px-6 rounded-xs">
+                            {!product.inStock ? (
+                                <button disabled className="w-full bg-gray-200 text-gray-500 h-12 text-[11px] font-bold tracking-widest flex items-center justify-center rounded-xs cursor-not-allowed uppercase">
+                                    OUT OF STOCK
+                                </button>
+                            ) : (
+                                <>
+                                    <div className="flex flex-col sm:flex-row gap-4">
+                                        {cartItem ? (
+                                            <div className="w-full sm:flex-1 border border-black h-12 flex items-center justify-between px-6 rounded-xs">
+                                                <button
+                                                    onClick={() => updateQuantity(product._id, -1)}
+                                                    className="text-gray-500 hover:text-black transition-colors"
+                                                >
+                                                    <Minus size={16} />
+                                                </button>
+                                                <span className="text-xs font-bold tracking-widest">{cartItem.quantity} IN BAG</span>
+                                                <button
+                                                    onClick={() => updateQuantity(product._id, 1)}
+                                                    className="text-gray-500 hover:text-black transition-colors"
+                                                >
+                                                    <Plus size={16} />
+                                                </button>
+                                            </div>
+                                        ) : (
+                                            <button
+                                                onClick={() => addToCart(product)}
+                                                className="w-full sm:flex-1 bg-white text-black border-2 border-black h-12 text-[11px] font-bold tracking-widest uppercase hover:bg-gray-100 transition-colors flex items-center justify-center gap-3 rounded-xs cursor-pointer shadow-sm"
+                                            >
+                                                <ShoppingBag size={16} />
+                                                Add to Bag
+                                            </button>
+                                        )}
+
                                         <button
-                                            onClick={() => updateQuantity(product._id, -1)}
-                                            className="text-gray-500 hover:text-black transition-colors"
+                                            onClick={() => toggleWishlist(product)}
+                                            className={`h-12 w-full sm:w-16 border rounded-xs flex items-center justify-center transition-colors cursor-pointer ${isWishlisted ? 'border-red-500 bg-red-50 text-red-500' : 'border-gray-300 text-gray-400 hover:border-black hover:text-black'}`}
                                         >
-                                            <Minus size={16} />
-                                        </button>
-                                        <span className="text-xs font-bold tracking-widest">{cartItem.quantity} IN BAG</span>
-                                        <button
-                                            onClick={() => updateQuantity(product._id, 1)}
-                                            className="text-gray-500 hover:text-black transition-colors"
-                                        >
-                                            <Plus size={16} />
+                                            <Heart size={20} fill={isWishlisted ? "currentColor" : "none"} />
                                         </button>
                                     </div>
-                                ) : (
+
                                     <button
-                                        onClick={() => addToCart(product)}
-                                        className="w-full sm:flex-1 bg-white text-black border-2 border-black h-12 text-[11px] font-bold tracking-widest uppercase hover:bg-gray-100 transition-colors flex items-center justify-center gap-3 rounded-xs cursor-pointer shadow-sm"
+                                        onClick={() => {
+                                            if (!cartItem) addToCart(product);
+                                            router.push('/account/cart');
+                                        }}
+                                        className="w-full bg-[#D4A373] text-white h-12 text-[11px] font-bold tracking-widest uppercase hover:bg-[#c29161] transition-colors flex items-center justify-center gap-3 rounded-xs cursor-pointer shadow-sm"
                                     >
-                                        <ShoppingBag size={16} />
-                                        Add to Bag
+                                        Buy Now
                                     </button>
-                                )}
-
-                                <button
-                                    onClick={() => toggleWishlist(product)}
-                                    className={`h-12 w-full sm:w-16 border rounded-xs flex items-center justify-center transition-colors cursor-pointer ${isWishlisted ? 'border-red-500 bg-red-50 text-red-500' : 'border-gray-300 text-gray-400 hover:border-black hover:text-black'}`}
-                                >
-                                    <Heart size={20} fill={isWishlisted ? "currentColor" : "none"} />
-                                </button>
-                            </div>
-
-                            <button
-                                onClick={() => {
-                                    if (!cartItem) addToCart(product);
-                                    router.push('/account/cart');
-                                }}
-                                className="w-full bg-[#D4A373] text-white h-12 text-[11px] font-bold tracking-widest uppercase hover:bg-[#c29161] transition-colors flex items-center justify-center gap-3 rounded-xs cursor-pointer shadow-sm"
-                            >
-                                Buy Now
-                            </button>
+                                </>
+                            )}
                         </div>
                     </div>
 
@@ -192,7 +207,7 @@ export default function ProductDetailPage() {
                         </div>
                         <div className="border border-gray-100 p-4 rounded-xs bg-gray-50/50">
                             <h3 className="text-xs font-bold tracking-[0.2em] uppercase text-[#1a1a1a] mb-2">Shipping & Returns</h3>
-                            <p className="text-sm text-gray-500">Free shipping on orders above ₹999. Easy 7-day returns.</p>
+                            <p className="text-sm text-gray-500">Free shipping on orders above ₹599. Easy 7-day returns.</p>
                         </div>
                     </div>
                 </div>

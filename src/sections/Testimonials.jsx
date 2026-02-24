@@ -4,46 +4,10 @@ import Image from "next/image";
 import Link from "next/link";
 import { Star, ChevronLeft, ChevronRight } from "lucide-react";
 import useEmblaCarousel from "embla-carousel-react";
+import { reviews } from "../constants/constant";
 
 const Testimonials = () => {
-    const reviews = [
-        {
-            name: "Joshna D.",
-            text: '"This piece is just amazing, I want to purchase 1 more set but it was out of stock 😭 😭 😭 I wish I could get more"',
-            product: "Nail Bangle Bracelet",
-            img: "/landingImage/ring-women.jpeg"
-        },
-        {
-            name: "Amila M.",
-            text: '"They are soooo pretty. I always wished to have such earrings in real gold, but gold is sooo expensive now. So I am glad I stumbled into Palmonas. Thank you and keep up the awesome work."',
-            product: "Golden Heart Love Hoops",
-            img: "/landingImage/ring-women.jpeg"
-        },
-        {
-            name: "Yash K.",
-            text: '"My experience was amazing after purchasing this product. I was eagerly waiting to buy this. Price and quality is amazing you can buy it. It\'s give a tough competition to gold products."',
-            product: "Small Heart Hoop Earrings",
-            img: "/landingImage/ring-women.jpeg"
-        },
-        {
-            name: "Joshna D.",
-            text: '"This piece is just amazing, I want to purchase 1 more set but it was out of stock 😭 😭 😭 I wish I could get more"',
-            product: "Nail Bangle Bracelet",
-            img: "/landingImage/ring-women.jpeg"
-        },
-        {
-            name: "Amila M.",
-            text: '"They are soooo pretty. I always wished to have such earrings in real gold, but gold is sooo expensive now. So I am glad I stumbled into Palmonas. Thank you and keep up the awesome work."',
-            product: "Golden Heart Love Hoops",
-            img: "/landingImage/ring-women.jpeg"
-        },
-        {
-            name: "Yash K.",
-            text: '"My experience was amazing after purchasing this product. I was eagerly waiting to buy this. Price and quality is amazing you can buy it. It\'s give a tough competition to gold products."',
-            product: "Small Heart Hoop Earrings",
-            img: "/landingImage/ring-women.jpeg"
-        }
-    ];
+
 
     const [emblaRef, emblaApi] = useEmblaCarousel({
         loop: true,

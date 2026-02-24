@@ -6,7 +6,7 @@ import Marquee from "@/components/Marquee.jsx";
 
 const Hero = () => {
     const slides = heroImages.map((img, idx) => (
-        <div key={idx} className="relative w-[90%] mx-auto overflow-hidden rounded-2xl md:rounded-3xl shadow-[0_8px_40px_rgba(0,0,0,0.12)] bg-black">
+        <div key={idx} className="relative w-[80%] mx-auto overflow-hidden rounded-2xl md:rounded-3xl shadow-[0_8px_40px_rgba(0,0,0,0.12)] bg-black">
             <picture>
                 <source media="(max-width: 768px)" srcSet={img.src_mobile} />
                 <img

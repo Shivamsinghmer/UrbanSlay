@@ -31,6 +31,7 @@ export const ShopProvider = ({ children }) => {
     }, [wishlist]);
 
     const addToCart = (product) => {
+        if (!product.inStock) return;
         setCart((prev) => {
             const exists = prev.find(item => item._id === product._id);
             if (exists) {
@@ -48,6 +49,12 @@ export const ShopProvider = ({ children }) => {
         setCart((prev) => {
             return prev.map(item => {
                 if (item._id === productId) {
+                    // Prevent increasing quantity if not in stock
+                    // Though if it's in the cart, it WAS in stock. But this is safer.
+                    if (change > 0 && item.inStock === false) {
+                        return item;
+                    }
+
                     const newQuantity = item.quantity + change;
                     if (newQuantity <= 0) {
                         return null; // Will be filtered out

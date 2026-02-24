@@ -24,7 +24,7 @@ export default function CartPage() {
         0
     );
 
-    const shippingCost = cartTotalAmount < 600 ? 80 : 0;
+    const shippingCost = cartTotalAmount <= 599 ? 80 : 0;
     const codFee = paymentMethod === "cod" ? 40 : 0;
     const finalTotal = cartTotalAmount + shippingCost + codFee;
 
@@ -60,7 +60,7 @@ export default function CartPage() {
                     </div>
 
                     {/* Order Summary */}
-                    <div className="w-full lg:w-[380px] shrink-0">
+                    <div className="w-full lg:w-95 shrink-0">
                         <div className="bg-white rounded-2xl p-6 md:p-8 sticky top-32 border border-gray-100 shadow-[0_4px_24px_rgba(0,0,0,0.04)]">
                             <h3 className="text-xl font-serif mb-6 tracking-wide border-b border-gray-100 pb-4">Order Summary</h3>
 
@@ -127,7 +127,7 @@ export default function CartPage() {
                                         </div>
                                     </label>
                                 </div>
-                                {cartTotalAmount < 600 && (
+                                {cartTotalAmount <= 599 && (
                                     <div className="bg-red-50/50 border border-red-100 rounded-lg p-3 mt-4 text-center">
                                         <span className="text-[11px] tracking-wide text-red-600 font-medium">Add ₹{(600 - cartTotalAmount).toLocaleString()} more for free shipping!</span>
                                     </div>
@@ -146,6 +146,11 @@ export default function CartPage() {
 
                             <button
                                 onClick={() => {
+                                    const outOfStockItems = cart.filter(item => item.inStock === false);
+                                    if (outOfStockItems.length > 0) {
+                                        alert("Some items in your cart are out of stock. Please remove them before checking out.");
+                                        return;
+                                    }
                                     if (!isSignedIn) {
                                         clerk.openSignIn();
                                         return;

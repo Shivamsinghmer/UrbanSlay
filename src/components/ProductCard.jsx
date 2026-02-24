@@ -15,10 +15,17 @@ export default function ProductCard({ product }) {
     return (
         <Link href={`/product/${product._id}`} className="group relative flex flex-col cursor-pointer">
             <div className="relative aspect-4/5 overflow-hidden bg-muted rounded-3xl transition-all duration-700 ease-out shadow-[0_4px_24px_rgba(0,0,0,0.04)] group-hover:shadow-[0_12px_40px_rgba(0,0,0,0.12)] group-hover:-translate-y-1">
-                {product.buyOneGetOne && (
+                {product.buyOneGetOne && product.inStock && (
                     <div className="absolute top-4 left-4 z-10">
                         <div className="bg-primary text-white text-[9px] px-3.5 py-1.5 font-bold tracking-[0.2em] uppercase rounded-full shadow-sm drop-shadow-md">
                             Buy 1 Get 1
+                        </div>
+                    </div>
+                )}
+                {!product.inStock && (
+                    <div className="absolute top-4 left-4 z-10">
+                        <div className="bg-red-600 text-white text-[9px] px-3.5 py-1.5 font-bold tracking-[0.2em] uppercase rounded-full shadow-sm drop-shadow-md">
+                            OUT OF STOCK
                         </div>
                     </div>
                 )}
@@ -51,11 +58,19 @@ export default function ProductCard({ product }) {
                                 <span>{cartItem.quantity} IN BAG</span>
                                 <button
                                     onClick={(e) => { e.preventDefault(); e.stopPropagation(); updateQuantity(product._id, 1); }}
-                                    className="w-8 h-8 flex items-center justify-center hover:bg-gray-100 rounded-full transition-colors cursor-pointer"
+                                    disabled={!product.inStock}
+                                    className={`w-8 h-8 flex items-center justify-center rounded-full transition-colors ${!product.inStock ? 'opacity-30 cursor-not-allowed' : 'hover:bg-gray-100 cursor-pointer'}`}
                                 >
                                     <Plus size={14} />
                                 </button>
                             </div>
+                        ) : !product.inStock ? (
+                            <button
+                                disabled
+                                className="flex-1 bg-gray-200 text-gray-500 text-[11px] font-bold tracking-widest py-3 rounded-xs flex items-center justify-center gap-2 shadow-lg cursor-not-allowed border-2 border-transparent"
+                            >
+                                OUT OF STOCK
+                            </button>
                         ) : (
                             <button
                                 onClick={(e) => { e.preventDefault(); e.stopPropagation(); addToCart(product); }}
@@ -73,17 +88,19 @@ export default function ProductCard({ product }) {
                         </button>
                     </div>
 
-                    <button
-                        onClick={(e) => {
-                            e.preventDefault();
-                            e.stopPropagation();
-                            if (!cartItem) addToCart(product);
-                            router.push('/account/cart');
-                        }}
-                        className="w-full bg-primary text-white text-[11px] font-bold tracking-widest py-3 hover:bg-black transition-colors duration-500 flex items-center justify-center gap-2 shadow-lg cursor-pointer uppercase rounded-full border border-black/5"
-                    >
-                        BUY NOW
-                    </button>
+                    {!product.inStock ? null : (
+                        <button
+                            onClick={(e) => {
+                                e.preventDefault();
+                                e.stopPropagation();
+                                if (!cartItem) addToCart(product);
+                                router.push('/account/cart');
+                            }}
+                            className="w-full bg-primary text-white text-[11px] font-bold tracking-widest py-3 hover:bg-black transition-colors duration-500 flex items-center justify-center gap-2 shadow-lg cursor-pointer uppercase rounded-full border border-black/5"
+                        >
+                            BUY NOW
+                        </button>
+                    )}
                 </div>
 
                 {/* Quick view button - appears on hover (if TopProducts specifically needs it, otherwise it can stay here) */}
